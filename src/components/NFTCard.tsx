@@ -1,38 +1,44 @@
 import { ThirdwebNftMedia } from "@thirdweb-dev/react";
 import { NFT } from "@thirdweb-dev/sdk";
-import { FC, useState } from "react";
+import { FC} from "react";
 import { Link } from "react-router-dom";
+import { EditIcon, ViewIcon } from '@chakra-ui/icons';
+import { Box, Button, ButtonGroup, Card, CardHeader, CardBody, CardFooter, Flex, Heading, HStack, Image, Skeleton, Spacer, Text,} from "@chakra-ui/react";
 
 interface INFTCardProps {
   nft: NFT;
 }
 
 export const NFTCard: FC<INFTCardProps> = ({ nft }) => {
-  const [hover, setHover] = useState<boolean>(false);
-
+  
   return (
-    <Link to={`/nft/${nft.metadata.id}`}>
-      <div
-        className="z-10 mx-auto flex h-36 w-36 cursor-pointer flex-col items-center justify-center gap-4 bg-transparent transition-all duration-300 hover:scale-105 md:h-60 md:w-60"
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
-      >
-        <ThirdwebNftMedia
-          metadata={nft.metadata}
-          className="!md:h-60 !md:w-60 h-36 w-36 rounded-lg"
-        />
-
-        {hover && (
-          <div className="absolute flex h-36 w-36 flex-col items-center justify-center rounded-lg bg-black/50 backdrop-filter md:h-60 md:w-60">
-            <h1 className="text-2xl text-gray-200">
-              {String(nft.metadata.name).split(" ")[0]}
-            </h1>
-            <h1 className="text-2xl font-bold text-gray-200">
-              {String(nft.metadata.name).split(" ")[1]}
-            </h1>
-          </div>
-        )}
-      </div>
-    </Link>
+    
+    <Flex direction={"column"} spacing={"4"} maxW={"300px"} >
+      <Card>
+        <CardHeader>          
+            <Link to={`/nft/${nft.metadata.id}`}>
+              <ThirdwebNftMedia
+                metadata={nft.metadata}
+                borderRadius="20px"
+              />
+            </Link>
+        </CardHeader>
+        <CardBody>  
+            <Heading as="h3" size="md">{String(nft.metadata.name)}</Heading>
+            <Text>{String(nft.metadata.description)}</Text>
+        </CardBody>
+        <CardFooter>
+          <ButtonGroup>      
+            <HStack>
+              <Button variant="ghost" leftIcon={<ViewIcon />}>
+                Watch
+              </Button>
+              <Spacer />
+              <Button>Claim</Button>
+            </HStack>
+          </ButtonGroup>
+        </CardFooter>
+      </Card>
+    </Flex>
   );
 };

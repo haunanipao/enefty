@@ -1,3 +1,6 @@
+tailwind.config.js
+HistoryCard.tsx
+indexbk.tsx
 # Logs
 logs
 *.log

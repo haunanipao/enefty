@@ -10,10 +10,15 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.19",
+    "@chakra-ui/react": "^2.7.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@thirdweb-dev/react": "^3",
     "@thirdweb-dev/sdk": "^3",
     "@thirdweb-dev/wallets": "^0.2.19",
     "ethers": "^5",
+    "framer-motion": "^10.12.16",
     "react": "^18.2",
     "react-dom": "^18.2",
     "react-helmet": "^6.1.0",
