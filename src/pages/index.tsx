@@ -4,13 +4,7 @@ import { contractAddress } from "@/consts/parameters";
 import useDebounce from "@/hooks/useDebounce";
 import { SearchIcon } from "@/icons/SearchIcon";
 import {
-  MediaRenderer,
-  NFT,
-  useContract,
-  useContractMetadata,
-  useNFT,
-  useNFTs,
-  useTotalCount,
+  MediaRenderer, NFT, useContract, useMetadata, useNFT, useNFTs,useTotalCount,
 } from "@thirdweb-dev/react";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
@@ -29,8 +23,7 @@ function App() {
   });
   const { data: totalCount } = useTotalCount(contract);
   const { data: firstNFT, isLoading: nftLoading } = useNFT(contract, 0);
-  const { data: contractMetadata, isLoading: contractLoading } =
-    useContractMetadata(contract);
+  const { data: contractMetadata, isLoading: contractLoading } = useMetadata(contract);
   const [nft, setNft] = useState<NFT | null>(null);
   const [isSearching, setIsSearching] = useState(false);
 
@@ -49,6 +42,7 @@ function App() {
     }
   }, [debouncedSearchTerm]);
 
+  console.log(firstNFT);
   return (
     <Container maxW="1920px" bg="purple.300" p={10}> 
       <Header />
@@ -62,19 +56,16 @@ function App() {
         <Card direction="row" w="1000px">
         <CardHeader w="300px">
           <Skeleton isLoaded={!nftLoading}>
-            <Image src={contractMetadata?.image || firstNFT?.metadata.image}
-                    alt={contractMetadata?.name || firstNFT?.metadata.name}
-                    borderRadius="20px"
-                  />
+            <Image src={contractMetadata?.image} alt={contractMetadata?.name} borderRadius="20px"/>
           </Skeleton>
         </CardHeader>
         <CardBody w="700px">
           <Flex direction="column" gap={10}>
             <Skeleton isLoaded={!nftLoading}>
-              <Heading>{contractMetadata.name}</Heading>
+              <Heading>{contractMetadata?.name}</Heading>
             </Skeleton>
             <Skeleton isLoaded={!nftLoading}>
-              <Text>{contractMetadata.description}</Text>
+              <Text>{contractMetadata?.description}</Text>
             </Skeleton>
             <Text>Total Minted in Collection: minted / Total Supply </Text>
           </Flex>

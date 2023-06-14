@@ -2,7 +2,7 @@ import { contractAddress } from "@/consts/parameters";
 import {
   ConnectWallet,
   useContract,
-  useContractMetadata,
+
   useNFT,
 } from "@thirdweb-dev/react";
 import { Link } from "react-router-dom";
