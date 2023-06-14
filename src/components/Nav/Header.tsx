@@ -2,7 +2,6 @@ import { contractAddress } from "@/consts/parameters";
 import {
   ConnectWallet,
   useContract,
-
   useNFT,
 } from "@thirdweb-dev/react";
 import { Link } from "react-router-dom";
@@ -16,15 +15,18 @@ export const Header: React.FC = () => {
   return (
     
     <Flex p={10} justifyContent={"space-between"} alignItems={'center'}
-          bg={useColorModeValue('purple.50', 'purple.900')}
-          color={useColorModeValue('purple.700', 'purple.200')}> 
+          bg={useColorModeValue('brand.50', 'brand.900')}
+          color={useColorModeValue('brand.700', 'brand.200')}> 
       <Link to="/">
         <Heading as="h1" size="lg">{NAV_LOGO}</Heading>
       </Link>
-      <Flex>
+      {/* <Flex>
         <InputGroup gap={4} alignItems={'center'} >
           <inputLeftElement pointerEvents="none" children={<SearchIcon />} />
-          <input type="text" width="600px"
+          <input type="text" w={"600px"} name="Collection address" size="lg" bg="white.50" color="brand.700"
+              borderColor="brand.900"
+              placeholder="Collection address?"
+              _placeholder={{ color: 'inherit' }}
               onChange={(e) => {
                 if (
                   e.target.value.match(/^[0-9]*$/) &&
@@ -35,11 +37,11 @@ export const Header: React.FC = () => {
                   setSearch("");
                 }
               }}
-              placeholder="Search by ID"
+              value={search}
           />
         </InputGroup>
-      </Flex>
-      <ConnectWallet colorScheme="purple" theme="dark" />
+      </Flex> */}
+      <ConnectWallet colorScheme="brand" />
     </Flex>
   );
 };

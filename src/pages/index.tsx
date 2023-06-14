@@ -8,8 +8,14 @@ import {
 } from "@thirdweb-dev/react";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { EditIcon, ViewIcon } from "@chakra-ui/icons";
-import { Box, Button, Card, CardHeader, CardBody, CardFooter, Container, Flex, Heading, HStack, Image, Skeleton, Spacer, Stack, Text } from "@chakra-ui/react";
+import { EditIcon, ViewIcon, Search2Icon } from "@chakra-ui/icons";
+import { Box, Button, Card, CardHeader, CardBody, CardFooter, Container, Flex,
+  FormControl,
+  FormLabel,
+  FormHelperText, Heading, HStack, Image,   Input,
+  InputGroup,
+  InputLeftElement, Skeleton, Spacer, Stack, Text } from "@chakra-ui/react";
+  import { Form, redirect } from 'react-router-dom'
 
 function App() {
   const nftsPerPage = 30;
@@ -44,15 +50,60 @@ function App() {
 
   console.log(firstNFT);
   return (
-    <Container maxW="1920px" bg="purple.300" p={10}> 
+    <Container maxW="1920px" bg="brand.300" p={10}> 
       <Header />
-
+      <Flex
+      direction="column"
+      w={'auto'}
+      bg="brand.100"
+      justifyContent={'center'}
+      textAlign={'center'}
+      align={'center'}
+      spacing={{ base: 8, md: 10 }}
+      py={{ base: 20, md: 28 }}
+      m={10}
+    >
+      <Heading
+        fontWeight={600}
+        fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
+        lineHeight={'110%'}
+        mb={10}
+      >
+        Collections{' '}
+        <Text as={'span'} color={'brand.700'}>
+          made easy
+        </Text>
+      </Heading>
+      <Form method="post" action="/create">
+        <FormControl mb="40px">
+          <InputGroup>
+            <InputLeftElement pointerEvents="none">
+            <Search2Icon color="brand.600" />
+            </InputLeftElement>
+            <Input
+              w={'500px'}
+              type="text"
+              name="collection address"
+              size="lg"
+              bg="white.50"
+              color="brand.700"
+              borderColor="brand.900"
+              placeholder="What's the collection address?"
+              _placeholder={{ color: 'inherit' }}
+            />
+          </InputGroup>
+        </FormControl>
+        <Button type="submit" colorScheme="brand">
+          Find The NFTs
+        </Button>
+      </Form>
+    </Flex>
       <Helmet>
         <title>{contractMetadata?.name}</title>
       </Helmet>
 
-      <div >
-      <Flex h={"100vh"} p={10} direction="column" alignItems={"center"} justifyContent={"top"} bg="purple.100" >
+      <Flex h={"100vh"} p={10} direction="column" alignItems={"center"} justifyContent={"top"} bg="brand.100" >
+        
         <Card direction="row" w="1000px">
         <CardHeader w="300px">
           <Skeleton isLoaded={!nftLoading}>
@@ -72,7 +123,7 @@ function App() {
         </CardBody>
         <CardFooter>
           <Flex>
-            <Button leftIcon={<ViewIcon />} colorScheme="purple" variant="solid" />
+            <Button leftIcon={<ViewIcon />} colorScheme="brand" variant="solid" />
           </Flex>
         </CardFooter>
         </Card>
@@ -85,7 +136,7 @@ function App() {
         </Flex>
       </Flex>
       <Footer />
-      </div>
+
     </Container>
   );
 }
