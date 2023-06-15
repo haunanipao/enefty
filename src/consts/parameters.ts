@@ -11,4 +11,4 @@ export const chain = "mumbai";
 
 // The block explorer you want to use (Opens when user clicks on history of events. i.e. transfers)
 export const blockExplorer = "https://etherscan.io";
-export const NAV_LOGO = "ENEFTY";
+export const NAV_LOGO = "THE ENEFTY PROJECT";

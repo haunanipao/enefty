@@ -13,7 +13,7 @@ export const NFTCard: FC<INFTCardProps> = ({ nft }) => {
   
   return (
     
-    <Flex direction={"column"} spacing={"4"} maxW={"300px"} maxH={"500px"} color="brand.400">
+    <Flex direction={"column"} spacing={"4"} maxW={"300px"} maxH={"600px"} color="brand.400">
       <Card>
         <CardHeader>          
             <Link to={`/nft/${nft.metadata.id}`}>

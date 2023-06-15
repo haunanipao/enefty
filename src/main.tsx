@@ -6,7 +6,8 @@ import { chain } from "./consts/parameters";
 import { ChakraBaseProvider, extendTheme } from '@chakra-ui/react';
 
 const colors = {
-  brand: {
+  brand: 
+  {
     50: '#fbe5ff',
     100: '#e7b5ff',
     200: '#d685fb',

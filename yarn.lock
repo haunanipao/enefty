@@ -1425,6 +1425,16 @@
     "@floating-ui/dom" "^0.5.3"
     use-isomorphic-layout-effect "^1.1.1"
 
+"@fontsource/open-sans@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.npmjs.org/@fontsource/open-sans/-/open-sans-5.0.3.tgz"
+  integrity sha512-L86qrEfW7IWSGojCtiPpw2/M6qKjxDG+EV4k1xMVFCkhh6Z6gyZwevqCt0yOvd1BmjrtUAIAfSzFTjBn3DeZJw==
+
+"@fontsource/raleway@^5.0.3":
+  version "5.0.3"
+  resolved "https://registry.npmjs.org/@fontsource/raleway/-/raleway-5.0.3.tgz"
+  integrity sha512-dmbHSu2cvuQb0Vlp7sOETUSsrmYESwagmK73wb5Lhs+rkM/5aciI0DnNMiarVwEfE5V2bfcn3GgDkILQG5QPWw==
+
 "@google/model-viewer@^2.1.1":
   version "2.1.1"
   resolved "https://registry.npmjs.org/@google/model-viewer/-/model-viewer-2.1.1.tgz"
