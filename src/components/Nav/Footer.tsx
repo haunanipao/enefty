@@ -1,5 +1,6 @@
 import { Flex, Text, useColorModeValue, HStack } from '@chakra-ui/react'
 import { NAV_LOGO } from "@/consts/parameters";
+import { PoweredBy } from "@/components/PoweredBy";
 import type { FC } from "react";
 
 export const Footer: FC = ({
@@ -17,10 +18,7 @@ export const Footer: FC = ({
     >
         <Text>{NAV_LOGO}</Text>
         <Text>© 2023 Copyright</Text>
-      <HStack gap="3">
-        <Text>Twitter</Text>
-        <Text>Discord</Text>
-      </HStack>
+        <PoweredBy />
     </Flex>
   )
 }

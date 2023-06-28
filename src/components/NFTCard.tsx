@@ -1,8 +1,8 @@
 import { ThirdwebNftMedia } from "@thirdweb-dev/react";
 import { NFT } from "@thirdweb-dev/sdk";
-import { FC} from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
-import { EditIcon, ViewIcon } from '@chakra-ui/icons';
+import { EditIcon, ViewIcon } from "@chakra-ui/icons";
 import { Box, Button, ButtonGroup, Card, CardHeader, CardBody, CardFooter, Divider, Flex, Heading, HStack, Image, Skeleton, Spacer, Text,} from "@chakra-ui/react";
 
 interface INFTCardProps {
@@ -19,15 +19,14 @@ export const NFTCard: FC<INFTCardProps> = ({ nft }) => {
             <Link to={`/nft/${nft.metadata.id}`}>
               <ThirdwebNftMedia
                 metadata={nft.metadata}
-                borderRadius="20px"
               />
             </Link>
         </CardHeader>
         <CardBody>  
             <Heading as="h3" size="md" mb={4}>{String(nft.metadata.name)}</Heading>
-            <Text>{String(nft.metadata.description)}</Text>
+            {/* <Text>{String(nft.metadata.description)}</Text> */}
         </CardBody>
-        <Divider borderColor="brand.200" />
+        {/* <Divider borderColor="brand.200" />
         <CardFooter>
           <ButtonGroup>      
             <HStack>
@@ -38,7 +37,7 @@ export const NFTCard: FC<INFTCardProps> = ({ nft }) => {
               <Button colorScheme="brand">Claim</Button>
             </HStack>
           </ButtonGroup>
-        </CardFooter>
+        </CardFooter> */}
       </Card>
     </Flex>
   );
