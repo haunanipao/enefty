@@ -4,7 +4,7 @@ import { contractAddress } from "@/consts/parameters";
 import useDebounce from "@/hooks/useDebounce";
 import { truncateAddress } from "@/utils/truncateAddress";
 import { SearchIcon } from "@/icons/SearchIcon";
-import { MediaRenderer, NFT, useContract,  useContractRead, useMetadata, useNFT, useNFTs,useTotalCount} from "@thirdweb-dev/react";
+import { MediaRenderer, NFT, useContract,  useContractRead, useMetadata, useNFT, useNFTs, useTotalCount} from "@thirdweb-dev/react";
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
 import { EditIcon, ViewIcon, Search2Icon } from "@chakra-ui/icons";
@@ -46,6 +46,7 @@ export default function App() {
     }
   }, [debouncedSearchTerm]);
 
+  // To do: Add pagination, add search, add filter, add sort, add chain
   return (
     <Container maxW="1920px" bg="brand.300" p={10}> 
       <Header />
@@ -81,11 +82,11 @@ export default function App() {
                 <Text>{contractMetadata?.symbol}</Text>
               </HStack>
               <HStack>
-                <Text fontWeight="bold" color="brand.600" fontSize="48px" alignItems={"top"}>{totalCount?.toNumber()}</Text>
+                <Text fontWeight="bold" color="brand.600" fontSize="2xl" alignItems={"top"}>{totalCount?.toNumber()}</Text>
                 <Text>NFTs in Collection</Text>
               </HStack>
               <HStack>
-                <Text fontWeight="bold" color="brand.600" fontSize="48px">{totalMinted?.toNumber()}</Text> 
+                <Text fontWeight="bold" color="brand.600" fontSize="2xl">{totalMinted?.toNumber()}</Text> 
                 <Text>NFTs Minted from Collection</Text>
               </HStack>  
             </Flex>
