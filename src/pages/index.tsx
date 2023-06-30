@@ -17,7 +17,7 @@ export default function App() {
   const { data: contractMetadata, isLoading: contractLoading } = useMetadata(contract); // get collection metadata eg image and description
   const { data: totalCount } = useTotalCount(contract); // how many nft in collection
   const { data: totalMinted } = useContractRead(contract,"totalMinted"); // how many nft minted
-
+  console.log(totalMinted);
   // NFT layout and Search Information  
   const nftsPerPage = 30;
   const [page, setPage] = useState(1);
@@ -27,6 +27,7 @@ export default function App() {
     count: nftsPerPage,
     start: (page - 1) * nftsPerPage,
   }); // get nfts in collection
+  const { data: lastNFT, isLoading: nftLoading } = useNFT(contract, totalCount-1); // get last nft in collection if there is no image in collection metadata
 
 // React Hooks
   const [nft, setNft] = useState<NFT | null>(null);
@@ -48,7 +49,7 @@ export default function App() {
 
   // To do: Add pagination, add search, add filter, add sort, add chain
   return (
-    <Container maxW="1920px" bg="brand.300" p={10}> 
+    <Container maxW="1920px" bg="brand.600" p={10}> 
       <Header />
   
       <Helmet>
@@ -56,11 +57,13 @@ export default function App() {
       </Helmet>
 
       <Flex p={10} direction="column" alignItems={"center"} justifyContent={"top"} bg="brand.100">   
-       {/* <Collection collection ={contractAddress} />  */}
+       
        <Skeleton maxW="95%" isLoaded={!contractLoading}>
         <Card direction="row">
           <CardHeader w="25%">
-            <Image src={contractMetadata?.image} alt={contractMetadata?.name} />
+            <Image 
+            src={contractMetadata?.image || lastNFT?.metadata.image} 
+            alt={contractMetadata?.name || lastNFT?.metadata.name} />
           </CardHeader>
           <CardBody w="50%">
             <Flex direction="column" gap={10}>
@@ -93,6 +96,32 @@ export default function App() {
           </CardFooter>
         </Card>
         </Skeleton>
+          <InputGroup w="25%" m={10}>
+            <InputLeftElement pointerEvents="none" children={<Search2Icon />} />
+              <Input type="text" name="NFT ID" size="lg"
+              bg="white.50" color="brand.700" colorScheme="brand" borderColor="brand.900" 
+              placeholder="Give me a number between 0 - {totalCount}!" 
+              _placeholder={{ color: 'inherit' }}
+              onChange={(e) => {
+                  if (e.target.value.match(/^[0-9]*$/) && Number(e.target.value) > 0) 
+                    {
+                    setSearch(e.target.value);
+                    } else {setSearch("");
+                  }
+                }}
+                value={search}
+              />
+          </InputGroup>
+          
+        {!search && (
+          <Pagination
+            page={page}
+            setPage={setPage}
+            nftsPerPage={nftsPerPage}
+            totalCount={totalCount}
+            loading={isLoading}
+          />
+        )}
         <Flex m={10}>
           <Skeleton isLoaded={!contractLoading}>
           {nfts && !search && (
@@ -103,36 +132,21 @@ export default function App() {
           </Skeleton>
         </Flex>
       </Flex>
-      {/* <Box>
-          <SearchIcon />
-          <input type="text"
-            onChange={(e) => {
-              if (
-                e.target.value.match(/^[0-9]*$/) &&
-                Number(e.target.value) > 0
-              ) {
-                setSearch(e.target.value);
-              } else {
-                setSearch("");
-              }
-            }}
-            placeholder="Search by ID"
-          />
-        </Box> */}
+      
 
-        {isSearching ? (<Text>Hello World!</Text>) : null}
+        {/* {isSearching ? (<Text>Hello World!</Text>) : null}
 
         {search && nft && !isSearching ? (
           <NFTCard nft={nft} key={nft.metadata.id} />
-        ) : null}
+        ) : null} */}
 
-        {isLoading && (
+        {/* {isLoading && (
           <Flex>
             {Array.from({ length: nftsPerPage }).map((_, i) => (
               <div />
             ))}
           </Flex>
-        )}
+        )} */}
       
         {!search && (
           <Pagination
@@ -144,7 +158,6 @@ export default function App() {
           />
         )}
       <Footer />
-
     </Container>
   );
 };

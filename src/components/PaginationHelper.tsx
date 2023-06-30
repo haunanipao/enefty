@@ -1,5 +1,7 @@
 import useDebounce from "@/hooks/useDebounce";
 import { FC, useEffect, useState } from "react";
+import { ArrowBackIcon, ArrowForwardIcon, ArrowUpIcon, ChevronLeftIcon, ChevronRightIcon } from "@chakra-ui/icons"
+import { Button, Flex, Input, InputGroup, InputLeftElement, Link} from "@chakra-ui/react";
 
 interface IProps {
   page: number;
@@ -29,61 +31,31 @@ const PaginationHelper: FC<IProps> = ({
   }, [debouncedSearchTerm]);
 
   return (
-    <div className="flex items-center gap-2 md:ml-auto">
+    <Flex gap={5}>
       {isSearching || loading ? (
-        <div className="h-6 w-6 animate-spin rounded-full border-b-2 border-white/50"></div>
+        <div></div>
       ) : (
         <>
-          <button
-            className="rounded-lg bg-white/5 px-4 py-2 text-white shadow-2xl disabled:opacity-50"
+          <Button leftIcon={<ChevronLeftIcon/>} colorScheme="brand" w={10} h={10}
             onClick={() => setPage(page - 1)}
             disabled={page === 1}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
-          </button>
-          <input
-            type="number"
-            className="w-16 rounded-lg bg-white/5 p-2 text-white shadow-2xl focus:border-0 focus:outline-none focus:ring-0 active:border-0 active:outline-none active:ring-0"
+          </Button>
+
+          <Input bg="brand.50" colorScheme="brand" w={10} h={10}
+            type="number" 
             onChange={(e) => setPageInput(Number(e.target.value))}
             value={pageInput}
           />
 
-          <button
-            className="rounded-lg bg-white/5 px-4 py-2 text-white shadow-2xl"
+          <Button rightIcon={<ChevronRightIcon/>} colorScheme="brand" w={10} h={10}
             onClick={() => setPage(page + 1)}
             disabled={page === noOfPages}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
-          </button>
+          > 
+          </Button>
         </>
       )}
-    </div>
+    </Flex>
   );
 };
 
