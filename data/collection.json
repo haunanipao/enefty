@@ -1,0 +1,22 @@
+{
+  "collection": [
+    {
+       "id":1,
+       "name": "Enefty",
+       "address":"0xe8212Fa06dcB4E0364676dEaFf3bf5A742059d26r",
+       "chain":"mumbai"
+    },
+    {
+       "id":2,
+       "name": "BoxcatPlanet",
+       "address":"0x13BD972B0bfaefC9538a43c1FDA11D71C720cD47",
+       "chain":"ethereum"
+    },
+    {
+       "id":3,
+       "name": "Azuri",
+       "address":"0xED5AF388653567Af2F388E6224dC7C4b3241C544",
+       "chain":"ethereum"
+    }
+ ]
+}

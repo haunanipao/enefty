@@ -1,4 +1,4 @@
-import { Header, Footer, NFTCard, NavNFT } from "@/components";
+import { Header, Footer, NFTCard, NavNFT} from "@/components";
 import { HistoryCard } from "@/components/HistoryCard";
 import { contractAddress } from "@/consts/parameters";
 import { truncateAddress } from "@/utils/truncateAddress";
@@ -47,13 +47,13 @@ const NFTPage = () => {
 
       <Box>
         <Skeleton isLoaded={!isLoading}>
-          {/* <NavNFT    
+          <NavNFT    
           id={id}
           prevId={prevId}
           nextId={nextId}
           totalNFTs={totalNFTs}
           contractMetadata={contractMetadata}
-          /> */}
+          />
         <Card direction="row" bg="brand.100" w="100%" >
           <CardHeader>
             {nft ? (
@@ -167,29 +167,13 @@ const NFTPage = () => {
           </CardBody>
           <CardFooter w="5%"></CardFooter>
         </Card>
-       
-        <Flex p={10} gap={10} bg="brand.50" justifyContent="space-around" alignItems="center">
-          <HStack>
-          {id > 0 && (
-            <Link href={`/nft/${prevId}`}>
-              <Button leftIcon={<ArrowBackIcon />}  colorScheme="brand">
-              {contractMetadata?.name} {prevId}
-              </Button>
-            </Link>
-          )}
-          <Link href="/">
-            <Button rightIcon={<ArrowUpIcon/>} variant="outline" colorScheme="brand">Collection Home</Button>
-          </Link>
-          {totalNFTs > nextId && (
-            <Link href={`/nft/${nextId}`}>
-              <Button rightIcon={<ArrowForwardIcon />} colorScheme="brand">
-              {contractMetadata?.name} {nextId}
-              </Button>
-            </Link>
-          )}
-          </HStack>
-        </Flex>
-
+        <NavNFT    
+          id={id}
+          prevId={prevId}
+          nextId={nextId}
+          totalNFTs={totalNFTs}
+          contractMetadata={contractMetadata}
+          />
         </Skeleton>
       </Box>
       <Footer />

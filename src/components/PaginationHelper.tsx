@@ -47,7 +47,7 @@ const PaginationHelper: FC<IProps> = ({
             onChange={(e) => setPageInput(Number(e.target.value))}
             value={pageInput}
           />
-
+          
           <Button rightIcon={<ChevronRightIcon/>} colorScheme="brand" w={10} h={10}
             onClick={() => setPage(page + 1)}
             disabled={page === noOfPages}

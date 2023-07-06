@@ -29,7 +29,7 @@ export const Pagination: FC<IProps> = ({
       p={"20px"}
       justifyContent={"space-around"}
       alignItems={"center"}
-      gap="2"
+      gap="5"
       direction="row"
       bg={"brand.100"}
     >

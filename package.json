@@ -16,16 +16,18 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/open-sans": "^5.0.3",
     "@fontsource/raleway": "^5.0.3",
-    "@thirdweb-dev/react": "^3",
-    "@thirdweb-dev/sdk": "^3",
+    "@thirdweb-dev/react": "^3.14.8",
+    "@thirdweb-dev/sdk": "^3.10.28",
     "@thirdweb-dev/wallets": "^0.2.19",
     "ai": "^2.0.1",
     "ethers": "^5",
     "framer-motion": "^10.12.16",
     "react": "^18.2",
+    "react-chakra-pagination": "^2.1.0",
     "react-dom": "^18.2",
     "react-helmet": "^6.1.0",
-    "react-router-dom": "^6.11.1"
+    "react-router-dom": "^6.11.1",
+    "thirdweb": "^0.10.29"
   },
   "devDependencies": {
     "@types/react": "^18.2.6",

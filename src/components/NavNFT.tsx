@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { ArrowBackIcon, ArrowForwardIcon, ArrowUpIcon } from "@chakra-ui/icons"
-import { Button, Flex, Link} from "@chakra-ui/react";
+import { Button, Flex, HStack, Link} from "@chakra-ui/react";
 
 interface INavNFTProps {
   id: number;
@@ -20,24 +20,27 @@ export const NavNFT: FC<INavNFTProps> = ({
  
   return (
     <Flex p={10} gap={10} bg="brand.50" justifyContent="space-around" alignItems="center">
-      {id > 0 && (
-        <Link href={`/nft/${prevId}`}>
-          <Button leftIcon={<ArrowBackIcon />}  colorScheme="brand">
-          {contractMetadata?.name} {prevId}
+      <HStack>
+        {id > 0 && (
+          <Link href={`/nft/${prevId}`}>
+            <Button leftIcon={<ArrowBackIcon />} colorScheme="brand">
+              {contractMetadata?.name} {prevId}
+            </Button>
+          </Link>
+        )}
+        <Link href="/">
+          <Button rightIcon={<ArrowUpIcon/>} variant="outline" colorScheme="brand">
+            Collection Home
           </Button>
         </Link>
-      )}
-      <Link href="/">
-        <Button rightIcon={<ArrowUpIcon/>} variant="outline" colorScheme="brand">
-                Collection Home</Button>
-      </Link>
-      {totalNFTs > nextId && (
-        <Link href={`/nft/${nextId}`}>
-          <Button rightIcon={<ArrowForwardIcon />} colorScheme="brand">
-          {contractMetadata?.name} {nextId}
-          </Button>
-        </Link>
-      )}
+        {totalNFTs > nextId && (
+          <Link href={`/nft/${nextId}`}>
+            <Button rightIcon={<ArrowForwardIcon />} colorScheme="brand">
+              {contractMetadata?.name} {nextId}
+            </Button>
+          </Link>
+        )}
+      </HStack>
     </Flex>
   )
 }

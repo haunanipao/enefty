@@ -13,7 +13,7 @@ export const NFTCard: FC<INFTCardProps> = ({ nft }) => {
   const [hover, setHover] = useState<boolean>(false);
   return (
     
-    <Flex direction={"column"} spacing={"4"} maxW={"300px"} maxH={"600px"} color="brand.400">
+    <Flex direction={"column"} spacing={"4"} maxW={"300px"} maxH={"400px"} color="brand.400">
       <Card>
         <CardHeader 
           onMouseEnter={() => setHover(true)}
