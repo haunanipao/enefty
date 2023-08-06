@@ -1,16 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormLabel,
-  FormHelperText,
-  Heading,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  Text,
-} from '@chakra-ui/react'
+import { Box, Button, Flex, FormControl, FormLabel, FormHelperText,Heading, Input, InputGroup, InputLeftElement, Text} from '@chakra-ui/react'
 import { Search2Icon } from '@chakra-ui/icons'
 import { Form, redirect } from 'react-router-dom'
 export default function Hero() {

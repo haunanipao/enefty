@@ -3,6 +3,9 @@ indexbk.tsx
 index copy.tsx
 AddContract.tsx
 ContractList.tsx
+chatty.tsx
+casestudy.tsx
+Hero.tsx
 # Logs
 logs
 *.log

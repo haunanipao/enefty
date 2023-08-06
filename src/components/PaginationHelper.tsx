@@ -42,7 +42,7 @@ const PaginationHelper: FC<IProps> = ({
           >
           </Button>
 
-          <Input bg="brand.50" colorScheme="brand" w={10} h={10}
+          <Input bg="brand.50" colorScheme="brand" w={20} h={10}
             type="number" 
             onChange={(e) => setPageInput(Number(e.target.value))}
             value={pageInput}

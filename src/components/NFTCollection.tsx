@@ -7,20 +7,31 @@ import { Box, Button, Card, CardHeader, CardBody, CardFooter, Container, Flex, H
 // Collection Information
 
 interface ICollectionProps {
-  contractMetadata: string;
+  contractMetadata: Contract | null;
   contractAddress: string;
   lastNFT: string;
   totalCount: string;
+  selectedContract: Contract | null;
 }
 
-export const NFTCollection: FC<ICollectionProps> = ({contractMetadata, contractAddress, lastNFT, totalCount}) => {
+
+export const NFTCollection: FC<ICollectionProps> = ({contractMetadata, contractAddress, lastNFT, totalCount, selectedContract}) => {
+  const updatedContractMetadata = selectedContract || contractMetadata;
+
+
+  console.log("prop contractMetadata", contractMetadata)
+  console.log("prop contractAddress", contractAddress)
+  console.log("prop selectedContract", selectedContract)
+  console.log("updatedContractMetadata", updatedContractMetadata)
+
+
 
    return (
     <Card direction="row">
           <CardHeader w="25%">
             <Image 
-            src={contractMetadata?.image || lastNFT?.metadata.image} 
-            alt={contractMetadata?.name || lastNFT?.metadata.name} />
+            src={updatedContractMetadata?.image || lastNFT?.metadata.image} 
+            alt={updatedContractMetadata?.name || lastNFT?.metadata.name} />
           </CardHeader>
           <CardBody w="50%">
             <Flex direction="column" gap={10}>
@@ -29,8 +40,8 @@ export const NFTCollection: FC<ICollectionProps> = ({contractMetadata, contractA
                 bgClip="text"
                 fontSize="6xl"
                 fontWeight="extrabold"
-              >{contractMetadata?.name}</Heading>
-              <Text fontSize="2xl">{contractMetadata?.description}</Text>
+              >{updatedContractMetadata?.name}</Heading>
+              <Text fontSize="2xl">{updatedContractMetadata?.description}</Text>
             </Flex>
           </CardBody>
           <CardFooter w="25%">
@@ -39,7 +50,7 @@ export const NFTCollection: FC<ICollectionProps> = ({contractMetadata, contractA
               <Text>{truncateAddress(contractAddress)} </Text>
               <HStack>
                 <Text fontWeight="bold">Symbol</Text>          
-                <Text>{contractMetadata?.symbol}</Text>
+                <Text>{updatedContractMetadata?.symbol}</Text>
               </HStack>
               <HStack>
                 <Text fontWeight="bold" color="brand.600" fontSize="2xl" alignItems={"top"}>{totalCount?.toNumber()}</Text>
