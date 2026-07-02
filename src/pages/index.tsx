@@ -11,34 +11,26 @@ import { EditIcon, ViewIcon, Search2Icon } from "@chakra-ui/icons";
 import { Box, Button, Card, CardHeader, CardBody, CardFooter, Container, Flex, FormControl, FormLabel, FormHelperText, Heading, HStack, Image, Input, InputGroup, InputLeftElement, Select, Skeleton, Spacer, Stack, Text } from "@chakra-ui/react";
 
 export default function App() {
-   // State variable to store the selected contract address
-   const [selectedContract, setSelectedContract] = useState<string>("0xe8212Fa06dcB4E0364676dEaFf3bf5A742059d26"); // Set the initial selected contract address here
+  // State variable to store the selected contract address
+  const [selectedContract, setSelectedContract] = useState<string>("0xe8212Fa06dcB4E0364676dEaFf3bf5A742059d26"); // Set the initial selected contract address here
   
   // Collection Information
   const { contract: selectedContractData } = useContract(selectedContract); // interact with the selected smart contract
   const { data: contractMetadata, isLoading: contractLoading } = useMetadata(selectedContractData); // get collection metadata eg image and description
   const { data: totalCount } = useTotalCount(selectedContractData); // how many nft in collection
-  const { data: lastNFT, isLoading: nftLoading } = useNFT(selectedContractData, totalCount-1); // get last nft in collection if there is no image in collection metadata
-  
-  //state variable to feed into the contract that feeds into the debounce search term
-  // const [contractAddress, setContractAddress] = useState<string>(contract);
+  const { data: lastNFT, isLoading: nftLoading } = useNFT(selectedContractData, totalCount ? totalCount.toNumber() - 1 : undefined); // get last nft in collection if there is no image in collection metadata
 
   const handleContractSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-      setSelectedContract(event.target.value);
-    };
+    setSelectedContract(event.target.value);
+  };
     
-  const handleContractClick = async () => {
-    try {
-      const contract = await useContract(selectedContract);
-      setSelectedContractData(contract);
-      setPage(1); // Reset the page to 1 when a new contract is selected
-      } catch (error) {
-      console.error("Error fetching contract data:", error);
-      // Handle the error if the contract data cannot be fetched
-      }
-    };
+  const handleContractClick = () => {
+    setPage(1); // Reset the page to 1 when a new contract is selected
+  };
 
-  useEffect(() => {handleContractClick();}, []); // Fetch the NFT data when the component mounts
+  useEffect(() => {
+    setPage(1);
+  }, [selectedContract]);
     
   // NFT layout and Search Information  
   const nftsPerPage = 30;
@@ -49,7 +41,6 @@ export default function App() {
   const { data: nfts, isLoading } = useNFTs(selectedContractData, {
     count: nftsPerPage,
     start: (page - 1) * nftsPerPage,
-    contractAddress: selectedContract,
   }); // get nfts in collection
 
 // React Hooks
@@ -106,9 +97,9 @@ export default function App() {
               </Select>
               {selectedContractData && (
                 <Stack m={5}>
-                  <Text>Selected Contract: {selectedContractData.contractName}</Text>
+                  <Text>Selected Contract: {contracts.find((c) => c.address === selectedContract)?.contractName || contractMetadata?.name}</Text>
                   <Button onClick={handleContractClick} colorScheme="brand">
-                      Fetch {selectedContractData.contractName} NFTs
+                      Fetch {contracts.find((c) => c.address === selectedContract)?.contractName || contractMetadata?.name} NFTs
                     </Button>
                 </Stack>
               )}

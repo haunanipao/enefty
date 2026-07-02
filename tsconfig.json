@@ -29,6 +29,12 @@
   "include": [
     "src"
   ],
+  "exclude": [
+    "src/pages/index copy.tsx",
+    "src/pages/indexbk.tsx",
+    "src/pages/chatty.tsx",
+    "src/pages/casestudy.tsx"
+  ],
   "references": [
     {
       "path": "./tsconfig.node.json"

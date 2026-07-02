@@ -7,11 +7,11 @@ import { Box, Button, Card, CardHeader, CardBody, CardFooter, Container, Flex, H
 // Collection Information
 
 interface ICollectionProps {
-  contractMetadata: Contract | null;
+  contractMetadata: any;
   contractAddress: string;
-  lastNFT: string;
-  totalCount: string;
-  selectedContract: Contract | null;
+  lastNFT: any;
+  totalCount: any;
+  selectedContract?: any;
 }
 
 

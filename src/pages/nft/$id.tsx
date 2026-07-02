@@ -47,11 +47,11 @@ const NFTPage = () => {
 
       <Box>
         <Skeleton isLoaded={!isLoading}>
-          <NavNFT    
-          id={id}
+        <NavNFT    
+          id={Number(id || 0)}
           prevId={prevId}
           nextId={nextId}
-          totalNFTs={totalNFTs}
+          totalNFTs={totalNFTs || 0}
           contractMetadata={contractMetadata}
           />
         <Card direction="row" bg="brand.100" w="100%" >
@@ -59,8 +59,9 @@ const NFTPage = () => {
             {nft ? (
             <ThirdwebNftMedia
               metadata={nft?.metadata}
+              // @ts-ignore
               mimeType={nft?.mimeType}
-              w="100%"
+              style={{ width: "100%" }}
             />
             ) : (isLoading && (<div />))}
           </CardHeader>
@@ -105,7 +106,7 @@ const NFTPage = () => {
                     {isLoading ? (
                       <div />
                   ) : (
-                    <Heading fontSize="2xl">{String(nft.metadata.description).split("#")[0]}</Heading>
+                    <Heading fontSize="2xl">{String(nft?.metadata?.description || "").split("#")[0]}</Heading>
                   )}
               </Stack>
               <Stack>
@@ -129,7 +130,7 @@ const NFTPage = () => {
                         <div />
                       ) : (<Text textTransform="uppercase">Attributes</Text>)}         
                         <Flex direction="row" wrap="wrap" justify="top" gap={5}>
-                          {nft?.metadata.attributes?.map(
+                          {(nft?.metadata?.attributes as any)?.map(
                           (attr: { trait_type: string; value: string }) => (
                             <VStack p={5} border="1px" bg="brand.50" borderRadius="10px" borderColor="brand.600" alignItems="left">
                               <Text textTransform="uppercase">{attr.trait_type}</Text>
@@ -168,10 +169,10 @@ const NFTPage = () => {
           <CardFooter w="5%"></CardFooter>
         </Card>
         <NavNFT    
-          id={id}
+          id={Number(id || 0)}
           prevId={prevId}
           nextId={nextId}
-          totalNFTs={totalNFTs}
+          totalNFTs={totalNFTs || 0}
           contractMetadata={contractMetadata}
           />
         </Skeleton>
